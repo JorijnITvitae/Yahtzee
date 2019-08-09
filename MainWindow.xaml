@@ -5,38 +5,88 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yahtzee"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="641" Width="551">
 
-    <Grid>
+    <Border Padding="1">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="100" />
-        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
-        </Grid.RowDefinitions>
+            <Grid Width="100" HorizontalAlignment="Left">
 
-        <Button x:Name="Button_Dice1" Grid.Column="0" Grid.Row="0" Click="Button_Dice1_Click" />
-        <Button x:Name="Button_Dice2" Grid.Column="0" Grid.Row="1" Click="Button_Dice2_Click" />
-        <Button x:Name="Button_Dice3" Grid.Column="0" Grid.Row="2" Click="Button_Dice3_Click" />
-        <Button x:Name="Button_Dice4" Grid.Column="0" Grid.Row="3" Click="Button_Dice4_Click" />
-        <Button x:Name="Button_Dice5" Grid.Column="0" Grid.Row="4" Click="Button_Dice5_Click" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
 
-        <Image Name="Image_Dice1" Grid.Column="0" Grid.Row="0" />
-        <Image Name="Image_Dice2" Grid.Column="0" Grid.Row="1" />
-        <Image Name="Image_Dice3" Grid.Column="0" Grid.Row="2" />
-        <Image Name="Image_Dice4" Grid.Column="0" Grid.Row="3" />
-        <Image Name="Image_Dice5" Grid.Column="0" Grid.Row="4" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
 
-    </Grid>
+                <Image Name="Image_Dice1" Grid.Column="0" Grid.Row="1" />
+                <Image Name="Image_Dice2" Grid.Column="0" Grid.Row="2" />
+                <Image Name="Image_Dice3" Grid.Column="0" Grid.Row="3" />
+                <Image Name="Image_Dice4" Grid.Column="0" Grid.Row="4" />
+                <Image Name="Image_Dice5" Grid.Column="0" Grid.Row="5" />
+
+                <Button x:Name="Button_Dice1" Content="1" Grid.Column="0" Grid.Row="1" Click="Button_Dice_Click" Opacity="0" />
+                <Button x:Name="Button_Dice2" Content="2" Grid.Column="0" Grid.Row="2" Click="Button_Dice_Click" Opacity="0" />
+                <Button x:Name="Button_Dice3" Content="3" Grid.Column="0" Grid.Row="3" Click="Button_Dice_Click" Opacity="0" />
+                <Button x:Name="Button_Dice4" Content="4" Grid.Column="0" Grid.Row="4" Click="Button_Dice_Click" Opacity="0" />
+                <Button x:Name="Button_Dice5" Content="5" Grid.Column="0" Grid.Row="5" Click="Button_Dice_Click" Opacity="0" />
+
+                <Button x:Name="Button_Roll" Content="Roll" Grid.Column="0" Grid.Row="0" Click="Button_Roll_Click" Margin="1" FontSize="32" />
+
+            </Grid>
+
+            <Grid Margin="50 0 0 0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                    <RowDefinition Height="36" />
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Column="0" Grid.Row="0" ToolTip="Add ones" Content="Ones" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="1" ToolTip="Add twos" Content="Twos" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="2" ToolTip="Add threes" Content="Threes" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="3" ToolTip="Add fours" Content="Fours" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="4" ToolTip="Add fives" Content="Fives" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="5" ToolTip="Add sixes" Content="Sixes" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="7" ToolTip="3 of the same number = Total of all dice" Content="Three of a Kind" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="8" ToolTip="4 of the same number =  Total of all dice" Content="Carre" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="9" ToolTip="3 of the same number + 2 of the same number = 25 points" Content="Full House" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="10" ToolTip="4 sequential numbers = 30 points" Content="Small Street" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="11" ToolTip="5 sequential numbers = 40 points" Content="Big Street" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="12" ToolTip="5 of the same number = 50 points" Content="Yahtzee" FontSize="24" Click="Button_Pattern_Click" />
+                <Button Grid.Column="0" Grid.Row="13" ToolTip="Anything goes = Total of all dice" Content="Chance" FontSize="24" Click="Button_Pattern_Click" />
+
+            </Grid>
+
+        </StackPanel>
+        
+    </Border>
 
 </Window>
