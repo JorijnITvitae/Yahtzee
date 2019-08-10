@@ -54,15 +54,29 @@ namespace Yahtzee
 
         private void Button_Roll_Click(object sender, RoutedEventArgs e)
         {
-            Image_Dice1.Source = game.Roll(1);
-            Image_Dice2.Source = game.Roll(2);
-            Image_Dice3.Source = game.Roll(3);
-            Image_Dice4.Source = game.Roll(4);
-            Image_Dice5.Source = game.Roll(5);
+            game.Roll();
+
+            Image_Dice1.Source = game.GetBitmap(1);
+            Image_Dice2.Source = game.GetBitmap(2);
+            Image_Dice3.Source = game.GetBitmap(3);
+            Image_Dice4.Source = game.GetBitmap(4);
+            Image_Dice5.Source = game.GetBitmap(5);
+
+            if (game.Rolls == 3)
+                Button_Roll.IsEnabled = false;
+        }
+
+        private int TextBoxNumber(TextBox textbox)
+        {
+            if (textbox.Text != "")
+                return Convert.ToInt32(textbox.Text);
+            return 0;
         }
 
         private void Button_Pattern_Click(object sender, RoutedEventArgs e)
         {
+            if (game.Rolls == 0) return;
+
             Button button = (Button)(sender);
             button.IsEnabled = false;
 
@@ -84,17 +98,97 @@ namespace Yahtzee
                     TextBox_ThreeOfAKind .Text = game.ScoreOfAKind(3); break;
                 case "Carre":
                     TextBox_Carre.Text = game.ScoreOfAKind(4); break;
+                case "Full House":
+                    TextBox_FullHouse.Text = game.ScoreFullHouse(); break;
+                case "Small Street":
+                    TextBox_SmallStreet.Text = game.ScoreStreet(false); break;
+                case "Big Street":
+                    TextBox_BigStreet.Text = game.ScoreStreet(true); break;
                 case "Yahtzee":
                     TextBox_Yahtzee.Text = game.ScoreYahtzee(); break;
                 case "Chance":
                     TextBox_Chance.Text = game.ScoreChance(); break;
             }
 
-            Image_Dice1.Source = game.Reset(1);
-            Image_Dice2.Source = game.Reset(2);
-            Image_Dice3.Source = game.Reset(3);
-            Image_Dice4.Source = game.Reset(4);
-            Image_Dice5.Source = game.Reset(5);
+            if (TextBoxNumber(TextBox_Ones) +
+                TextBoxNumber(TextBox_Twos) +
+                TextBoxNumber(TextBox_Threes) +
+                TextBoxNumber(TextBox_Fours) +
+                TextBoxNumber(TextBox_Fives) +
+                TextBoxNumber(TextBox_Sixes) >= 63)
+            {
+                TextBox_NumberBonus.Text = "35";
+            }
+
+            TextBox_Total.Text =
+            (
+                TextBoxNumber(TextBox_Ones) +
+                TextBoxNumber(TextBox_Twos) +
+                TextBoxNumber(TextBox_Threes) +
+                TextBoxNumber(TextBox_Fours) +
+                TextBoxNumber(TextBox_Fives) +
+                TextBoxNumber(TextBox_Sixes) +
+                TextBoxNumber(TextBox_NumberBonus) +
+                TextBoxNumber(TextBox_ThreeOfAKind) +
+                TextBoxNumber(TextBox_Carre) +
+                TextBoxNumber(TextBox_FullHouse) +
+                TextBoxNumber(TextBox_SmallStreet) +
+                TextBoxNumber(TextBox_BigStreet) +
+                TextBoxNumber(TextBox_Yahtzee) +
+                TextBoxNumber(TextBox_Chance)
+            ).ToString();
+
+            game.Reset();
+
+            Image_Dice1.Source = game.DefaultBitmap;
+            Image_Dice2.Source = game.DefaultBitmap;
+            Image_Dice3.Source = game.DefaultBitmap;
+            Image_Dice4.Source = game.DefaultBitmap;
+            Image_Dice5.Source = game.DefaultBitmap;
+
+            Button_Roll.IsEnabled = true;
+        }
+
+        private void Button_Reset_Click(object sender, RoutedEventArgs e)
+        {
+            game.Reset();
+
+            Image_Dice1.Source = game.DefaultBitmap;
+            Image_Dice2.Source = game.DefaultBitmap;
+            Image_Dice3.Source = game.DefaultBitmap;
+            Image_Dice4.Source = game.DefaultBitmap;
+            Image_Dice5.Source = game.DefaultBitmap;
+
+            TextBox_Ones.Text = "";
+            TextBox_Twos.Text = "";
+            TextBox_Threes.Text = "";
+            TextBox_Fours.Text = "";
+            TextBox_Fives.Text = "";
+            TextBox_Sixes.Text = "";
+            TextBox_NumberBonus.Text = "";
+            TextBox_ThreeOfAKind.Text = "";
+            TextBox_Carre.Text = "";
+            TextBox_FullHouse.Text = "";
+            TextBox_SmallStreet.Text = "";
+            TextBox_BigStreet.Text = "";
+            TextBox_Yahtzee.Text = "";
+            TextBox_Chance.Text = "";
+            TextBox_Total.Text = "";
+
+            Button_Roll.IsEnabled = true;
+            Button_Ones.IsEnabled = true;
+            Button_Twos.IsEnabled = true;
+            Button_Threes.IsEnabled = true;
+            Button_Fours.IsEnabled = true;
+            Button_Fives.IsEnabled = true;
+            Button_Sixes.IsEnabled = true;
+            Button_ThreeOfAKind.IsEnabled = true;
+            Button_Carre.IsEnabled = true;
+            Button_FullHouse.IsEnabled = true;
+            Button_SmallStreet.IsEnabled = true;
+            Button_BigStreet.IsEnabled = true;
+            Button_Yahtzee.IsEnabled = true;
+            Button_Chance.IsEnabled = true;
         }
     }
 }

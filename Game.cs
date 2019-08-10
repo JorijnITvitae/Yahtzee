@@ -9,7 +9,7 @@ namespace Yahtzee
     class Game
     {
         private List<CroppedBitmap> bitmaps;
-
+        private int rolls;
 
         private void InitBitmaps()
         {
@@ -114,9 +114,11 @@ namespace Yahtzee
         {
             InitBitmaps();
             InitDice();
+            rolls = 0;
         }
 
         public int NumberOfDice => dice.Count;
+        public int Rolls => rolls;
 
         public CroppedBitmap DefaultBitmap => bitmaps[0];
 
@@ -131,16 +133,18 @@ namespace Yahtzee
             return dice[d - 1].bitmap;
         }
 
-        public CroppedBitmap Roll(int d)
+        public void Roll()
         {
-            dice[d - 1].Roll();
-            return dice[d - 1].bitmap;
+            ++rolls;
+            foreach (var die in dice)
+                die.Roll();
         }
 
-        public CroppedBitmap Reset(int d)
+        public void Reset()
         {
-            dice[d - 1].Reset();
-            return dice[d - 1].bitmap;
+            rolls = 0;
+            foreach (var die in dice)
+                die.Reset();
         }
 
         public string ScoreNumbers(int n)
@@ -174,6 +178,52 @@ namespace Yahtzee
             return score.ToString();
         }
         
+        public string ScoreFullHouse()
+        {
+            int[] ofAKind = new int[6];
+            for (int i = 0; i < 6; i++)
+                ofAKind[i] = 0;
+
+            foreach (var die in dice)
+                ofAKind[die.number - 1]++;
+
+            bool three = false, two = false;
+            foreach (var kind in ofAKind)
+            {
+                if (kind >= 3) three = true;
+                else if (kind >= 2) two = true;
+            }
+
+            if (three && two) return "25";
+            else return "0";
+        }
+
+        public string ScoreStreet(bool big)
+        {
+            int[] ofAKind = new int[6];
+            for (int i = 0; i < 6; i++)
+                ofAKind[i] = 0;
+
+            foreach (var die in dice)
+                ofAKind[die.number - 1] = 1;
+            
+            if (big)
+            {
+                int street1 = ofAKind[0] + ofAKind[1] + ofAKind[2] + ofAKind[3] + ofAKind[4];
+                int street2 = ofAKind[1] + ofAKind[2] + ofAKind[3] + ofAKind[4] + ofAKind[5];
+                if (street1 == 5 || street2 == 5) return "40";
+            }
+            else
+            {
+                int street1 = ofAKind[0] + ofAKind[1] + ofAKind[2] + ofAKind[3];
+                int street2 = ofAKind[1] + ofAKind[2] + ofAKind[3] + ofAKind[4];
+                int street3 = ofAKind[2] + ofAKind[3] + ofAKind[4] + ofAKind[5];
+                if (street1 == 4 || street2 == 4 || street3 == 4) return "30";
+            }
+
+            return "0";
+        }
+
         public string ScoreYahtzee()
         {
             if (ScoreOfAKind(5) != "0")

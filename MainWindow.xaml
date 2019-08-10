@@ -69,22 +69,22 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Button Content="Ones" Grid.Column="0" Grid.Row="0" ToolTip="Add ones" Click="Button_Pattern_Click" />
-                <Button Content="Twos" Grid.Column="0" Grid.Row="1" ToolTip="Add twos" Click="Button_Pattern_Click" />
-                <Button Content="Threes" Grid.Column="0" Grid.Row="2" ToolTip="Add threes" Click="Button_Pattern_Click" />
-                <Button Content="Fours" Grid.Column="0" Grid.Row="3" ToolTip="Add fours" Click="Button_Pattern_Click" />
-                <Button Content="Fives" Grid.Column="0" Grid.Row="4" ToolTip="Add fives" Click="Button_Pattern_Click" />
-                <Button Content="Sixes" Grid.Column="0" Grid.Row="5" ToolTip="Add sixes" Click="Button_Pattern_Click" />
-                <Button Content="Number Bonus" Grid.Column="0" Grid.Row="6" ToolTip="If number points are 63 or more, you get 35 points extra" IsEnabled="False" />
-                <Button Content="Three of a Kind" Grid.Column="0" Grid.Row="7" ToolTip="3 of the same number = Total of all dice" Click="Button_Pattern_Click" />
-                <Button Content="Carre" Grid.Column="0" Grid.Row="8" ToolTip="4 of the same number =  Total of all dice" Click="Button_Pattern_Click" />
-                <Button Content="Full House" Grid.Column="0" Grid.Row="9" ToolTip="3 of the same number + 2 of the same number = 25 points" Click="Button_Pattern_Click" />
-                <Button Content="Small Street" Grid.Column="0" Grid.Row="10" ToolTip="4 sequential numbers = 30 points" Click="Button_Pattern_Click" />
-                <Button Content="Big Street" Grid.Column="0" Grid.Row="11" ToolTip="5 sequential numbers = 40 points" Click="Button_Pattern_Click" />
-                <Button Content="Yahtzee" Grid.Column="0" Grid.Row="12" ToolTip="5 of the same number = 50 points" Click="Button_Pattern_Click" />
-                <Button Content="Chance" Grid.Column="0" Grid.Row="13" ToolTip="Anything goes = Total of all dice" Click="Button_Pattern_Click" />
-                <Button Content="Yahtzee Bonus" Grid.Column="0" Grid.Row="14" ToolTip="When you get a Yahtzee again, it's 100 points" IsEnabled="False" />
-                <Button Content="Total Score" Grid.Column="0" Grid.Row="15" ToolTip="Total of all points" IsEnabled="False" />
+                <Button x:Name="Button_Ones" Content="Ones" Grid.Column="0" Grid.Row="0" ToolTip="Add ones" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_Twos" Content="Twos" Grid.Column="0" Grid.Row="1" ToolTip="Add twos" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_Threes" Content="Threes" Grid.Column="0" Grid.Row="2" ToolTip="Add threes" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_Fours" Content="Fours" Grid.Column="0" Grid.Row="3" ToolTip="Add fours" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_Fives" Content="Fives" Grid.Column="0" Grid.Row="4" ToolTip="Add fives" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_Sixes" Content="Sixes" Grid.Column="0" Grid.Row="5" ToolTip="Add sixes" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_NumberBonus" Content="Number Bonus" Grid.Column="0" Grid.Row="6" ToolTip="If number points are 63 or more, you get 35 points extra" IsEnabled="False" />
+                <Button x:Name="Button_ThreeOfAKind" Content="Three of a Kind" Grid.Column="0" Grid.Row="7" ToolTip="3 of the same number = Total of all dice" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_Carre" Content="Carre" Grid.Column="0" Grid.Row="8" ToolTip="4 of the same number =  Total of all dice" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_FullHouse" Content="Full House" Grid.Column="0" Grid.Row="9" ToolTip="3 of the same number + 2 of the same number = 25 points" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_SmallStreet" Content="Small Street" Grid.Column="0" Grid.Row="10" ToolTip="4 sequential numbers = 30 points" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_BigStreet" Content="Big Street" Grid.Column="0" Grid.Row="11" ToolTip="5 sequential numbers = 40 points" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_Yahtzee" Content="Yahtzee" Grid.Column="0" Grid.Row="12" ToolTip="5 of the same number = 50 points" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_Chance" Content="Chance" Grid.Column="0" Grid.Row="13" ToolTip="Anything goes = Total of all dice" Click="Button_Pattern_Click" />
+                <Button x:Name="Button_TotalScore" Content="Total Score" Grid.Column="0" Grid.Row="14" ToolTip="Total of all points" IsEnabled="False" />
+                <Button x:Name="Button_Reset" Content="Reset" Grid.Column="2" Grid.Row="15" ToolTip="Reset the game" Click="Button_Reset_Click" />
 
                 <TextBox x:Name="TextBox_Ones" Grid.Column="2" Grid.Row="0" />
                 <TextBox x:Name="TextBox_Twos" Grid.Column="2" Grid.Row="1" />
@@ -100,8 +100,7 @@
                 <TextBox x:Name="TextBox_BigStreet" Grid.Column="2" Grid.Row="11" />
                 <TextBox x:Name="TextBox_Yahtzee" Grid.Column="2" Grid.Row="12" />
                 <TextBox x:Name="TextBox_Chance" Grid.Column="2" Grid.Row="13" />
-                <TextBox x:Name="TextBox_YahtzeeBonus" Grid.Column="2" Grid.Row="14" />
-                <TextBox x:Name="TextBox_Total" Grid.Column="2" Grid.Row="15" />
+                <TextBox x:Name="TextBox_Total" Grid.Column="2" Grid.Row="14" />
 
             </Grid>
 
