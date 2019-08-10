@@ -40,15 +40,15 @@ namespace Yahtzee
             switch (button.Content)
             {
                 case "1":
-                    Image_Dice1.Source = game.Toggle(1); break;
+                    Image_Dice1.Source = game.Lock(1); break;
                 case "2":
-                    Image_Dice2.Source = game.Toggle(2); break;
+                    Image_Dice2.Source = game.Lock(2); break;
                 case "3":
-                    Image_Dice3.Source = game.Toggle(3); break;
+                    Image_Dice3.Source = game.Lock(3); break;
                 case "4":
-                    Image_Dice4.Source = game.Toggle(4); break;
+                    Image_Dice4.Source = game.Lock(4); break;
                 case "5":
-                    Image_Dice5.Source = game.Toggle(5); break;
+                    Image_Dice5.Source = game.Lock(5); break;
             }
         }
 
@@ -65,6 +65,36 @@ namespace Yahtzee
         {
             Button button = (Button)(sender);
             button.IsEnabled = false;
+
+            switch (button.Content)
+            {
+                case "Ones":
+                    TextBox_Ones.Text = game.ScoreNumbers(1); break;
+                case "Twos":
+                    TextBox_Twos.Text = game.ScoreNumbers(2); break;
+                case "Threes":
+                    TextBox_Threes.Text = game.ScoreNumbers(3); break;
+                case "Fours":
+                    TextBox_Fours.Text = game.ScoreNumbers(4); break;
+                case "Fives":
+                    TextBox_Fives.Text = game.ScoreNumbers(5); break;
+                case "Sixes":
+                    TextBox_Sixes.Text = game.ScoreNumbers(6); break;
+                case "Three of a Kind":
+                    TextBox_ThreeOfAKind .Text = game.ScoreOfAKind(3); break;
+                case "Carre":
+                    TextBox_Carre.Text = game.ScoreOfAKind(4); break;
+                case "Yahtzee":
+                    TextBox_Yahtzee.Text = game.ScoreYahtzee(); break;
+                case "Chance":
+                    TextBox_Chance.Text = game.ScoreChance(); break;
+            }
+
+            Image_Dice1.Source = game.Reset(1);
+            Image_Dice2.Source = game.Reset(2);
+            Image_Dice3.Source = game.Reset(3);
+            Image_Dice4.Source = game.Reset(4);
+            Image_Dice5.Source = game.Reset(5);
         }
     }
 }

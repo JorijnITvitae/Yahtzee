@@ -8,7 +8,8 @@ namespace Yahtzee
 {
     class Game
     {
-        List<CroppedBitmap> bitmaps;
+        private List<CroppedBitmap> bitmaps;
+
 
         private void InitBitmaps()
         {
@@ -74,12 +75,13 @@ namespace Yahtzee
                 }
             }
 
-            public void Toggle()
+            public void Lock()
             {
                 if (number > 0)
-                    locked = !locked;
-
-                UpdateBitmap();
+                {
+                    locked = true;
+                    UpdateBitmap();
+                }
             }
 
             public void Roll()
@@ -90,6 +92,12 @@ namespace Yahtzee
                     number = random.Next(1, 7);
                     UpdateBitmap();
                 }
+            }
+
+            public int IsNumber(int n)
+            {
+                if (n == number) return n;
+                else return 0;
             }
         }
 
@@ -112,9 +120,14 @@ namespace Yahtzee
 
         public CroppedBitmap DefaultBitmap => bitmaps[0];
 
-        public CroppedBitmap Toggle(int d)
+        public CroppedBitmap GetBitmap(int d)
         {
-            dice[d - 1].Toggle();
+            return dice[d - 1].bitmap;
+        }
+
+        public CroppedBitmap Lock(int d)
+        {
+            dice[d - 1].Lock();
             return dice[d - 1].bitmap;
         }
 
@@ -124,11 +137,56 @@ namespace Yahtzee
             return dice[d - 1].bitmap;
         }
 
-        public CroppedBitmap GetBitmap(int d)
+        public CroppedBitmap Reset(int d)
         {
+            dice[d - 1].Reset();
             return dice[d - 1].bitmap;
         }
 
+        public string ScoreNumbers(int n)
+        {
+            int score = 0;
+            foreach (var die in dice)
+            {
+                score += die.IsNumber(n);
+            }
+            return score.ToString();
+        }
 
+        public string ScoreOfAKind(int n)
+        {
+            int[] ofAKind = new int[6];
+            for (int i = 0; i < 6; i++)
+                ofAKind[i] = 0;
+
+            foreach (var die in dice)
+                ofAKind[die.number - 1]++;
+
+            bool enough = false;
+            foreach (var kind in ofAKind)
+                if (kind >= n) enough = true;
+            if (!enough) return "0";
+
+            int score = 0;
+            foreach (var die in dice)
+                score += die.number;
+
+            return score.ToString();
+        }
+        
+        public string ScoreYahtzee()
+        {
+            if (ScoreOfAKind(5) != "0")
+                return "50";
+            else return "0";
+        }
+
+        public string ScoreChance()
+        {
+            int score = 0;
+            foreach (var die in dice)
+                score += die.number;
+            return score.ToString();
+        }
     }
 }
